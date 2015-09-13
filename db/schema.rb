@@ -69,7 +69,7 @@ ActiveRecord::Schema.define(version: 20150913154027) do
 
   create_table "stores", force: :cascade do |t|
     t.string   "name",        limit: 255
-    t.text     "desctiption", limit: 65535
+    t.text     "description", limit: 65535
     t.string   "phone",       limit: 255
     t.string   "address",     limit: 255
     t.decimal  "tax_rate",                  precision: 10

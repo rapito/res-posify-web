@@ -1,11 +1,12 @@
 Rails.application.routes.draw do
+  resources :stores
+  mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   resources :orders
   resources :foods
   resources :tables
   resources :waiters
   resources :categories
   resources :customers
-  resources :stores
   resources :categories
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

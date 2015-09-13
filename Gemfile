@@ -1,10 +1,11 @@
 source 'https://rubygems.org'
 
-# Use Scheduler to start jobs on each new task
-gem 'rufus-scheduler'
-gem 'sqlite3'
-gem 'mysql2'
-gem 'MDL-rails'
+gem 'sqlite3', '1.3.10'
+gem 'mysql2', '0.3.18'
+gem 'MDL-rails', '1.0.0'
+gem 'faker', '1.5.0'
+
+gem 'rails_admin', '~> 0.6.8'
 
 gem 'rails', '4.2.1'
 gem 'sass-rails', '~> 5.0'

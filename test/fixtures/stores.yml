@@ -2,7 +2,7 @@
 
 one:
   name: MyString
-  desctiption: MyText
+  description: MyText
   phone: MyString
   address: MyString
   tax_rate: 9.99
@@ -10,7 +10,7 @@ one:
 
 two:
   name: MyString
-  desctiption: MyText
+  description: MyText
   phone: MyString
   address: MyString
   tax_rate: 9.99

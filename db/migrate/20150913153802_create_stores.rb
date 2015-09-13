@@ -2,7 +2,7 @@ class CreateStores < ActiveRecord::Migration
   def change
     create_table :stores do |t|
       t.string :name
-      t.text :desctiption
+      t.text :description
       t.string :phone
       t.string :address
       t.decimal :tax_rate
