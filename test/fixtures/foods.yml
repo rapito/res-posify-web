@@ -4,10 +4,10 @@ one:
   name: MyString
   price: 9.99
   description: MyText
-  category: MyString
+  category_id: 
 
 two:
   name: MyString
   price: 9.99
   description: MyText
-  category: MyString
+  category_id: 

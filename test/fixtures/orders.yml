@@ -5,15 +5,15 @@ one:
   brute: 9.99
   net: 9.99
   payed: false
-  payed_at: 2015-09-13 11:39:50
-  customer: MyString
-  waiter: MyString
+  payed_at: 2015-09-13 12:03:10
+  customer_id: 
+  waiter_id: 
 
 two:
   discount: 9.99
   brute: 9.99
   net: 9.99
   payed: false
-  payed_at: 2015-09-13 11:39:50
-  customer: MyString
-  waiter: MyString
+  payed_at: 2015-09-13 12:03:10
+  customer_id: 
+  waiter_id: 

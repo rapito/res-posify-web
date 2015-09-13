@@ -34,22 +34,33 @@ ActiveRecord::Schema.define(version: 20150913154027) do
     t.string   "name",        limit: 255
     t.decimal  "price",                     precision: 10
     t.text     "description", limit: 65535
-    t.string   "category",    limit: 255
+    t.integer  "category_id", limit: 4
     t.datetime "created_at",                               null: false
     t.datetime "updated_at",                               null: false
   end
 
-  create_table "orders", force: :cascade do |t|
-    t.decimal  "discount",               precision: 10
-    t.decimal  "brute",                  precision: 10
-    t.decimal  "net",                    precision: 10
-    t.boolean  "payed",      limit: 1
-    t.datetime "payed_at"
-    t.string   "customer",   limit: 255
-    t.string   "waiter",     limit: 255
-    t.datetime "created_at",                            null: false
-    t.datetime "updated_at",                            null: false
+  add_index "foods", ["category_id"], name: "index_foods_on_category_id", using: :btree
+
+  create_table "foods_orders", id: false, force: :cascade do |t|
+    t.integer "order_id", limit: 4, null: false
+    t.integer "food_id",  limit: 4, null: false
+    t.boolean "returned", limit: 1
   end
+
+  create_table "orders", force: :cascade do |t|
+    t.decimal  "discount",              precision: 10
+    t.decimal  "brute",                 precision: 10
+    t.decimal  "net",                   precision: 10
+    t.boolean  "payed",       limit: 1
+    t.datetime "payed_at"
+    t.integer  "customer_id", limit: 4
+    t.integer  "waiter_id",   limit: 4
+    t.datetime "created_at",                           null: false
+    t.datetime "updated_at",                           null: false
+  end
+
+  add_index "orders", ["customer_id"], name: "index_orders_on_customer_id", using: :btree
+  add_index "orders", ["waiter_id"], name: "index_orders_on_waiter_id", using: :btree
 
   create_table "orders_tables", id: false, force: :cascade do |t|
     t.integer "order_id", limit: 4, null: false
@@ -82,4 +93,7 @@ ActiveRecord::Schema.define(version: 20150913154027) do
     t.datetime "updated_at",             null: false
   end
 
+  add_foreign_key "foods", "categories"
+  add_foreign_key "orders", "customers"
+  add_foreign_key "orders", "waiters"
 end

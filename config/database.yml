@@ -12,8 +12,8 @@ mysql2: &mysql2
   host: localhost
 
 test:
-  <<: *default
-  database: db/test.sqlite3
+  <<: *mysql2
+  database: posify_test
 
 development:
   <<: *mysql2

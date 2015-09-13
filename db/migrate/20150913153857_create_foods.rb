@@ -4,7 +4,7 @@ class CreateFoods < ActiveRecord::Migration
       t.string :name
       t.decimal :price
       t.text :description
-      t.string :category
+      t.belongs_to :category, index: true, foreign_key: true
 
       t.timestamps null: false
     end

@@ -6,8 +6,8 @@ class CreateOrders < ActiveRecord::Migration
       t.decimal :net
       t.boolean :payed
       t.datetime :payed_at
-      t.string :customer
-      t.string :waiter
+      t.belongs_to :customer, index: true, foreign_key: true
+      t.belongs_to :waiter, index: true, foreign_key: true
 
       t.timestamps null: false
     end
