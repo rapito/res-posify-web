@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  desctiption: MyText
+  phone: MyString
+  address: MyString
+  tax_rate: 9.99
+  website: MyString
+
+two:
+  name: MyString
+  desctiption: MyText
+  phone: MyString
+  address: MyString
+  tax_rate: 9.99
+  website: MyString

@@ -1,0 +1,26 @@
+rails g scaffold store name:string desctiption:text phone:string address:string tax_rate:decimal website:string
+rails g scaffold customer name:string lastname:string email:string birthday:date phone:string
+rails g scaffold category name:string description:text
+rails g scaffold food name:string price:decimal description:text category
+rails g scaffold waiter name:string lastname:string
+rails g scaffold table name:string capacity:decimal indoor:boolean
+
+rails g scaffold order discount:decimal brute:decimal net:decimal payed:boolean payed_at:datetime customer waiter
+
+rails g migration CreateJoinTableOrderTable order table
+rails g migration CreateJoinTableOrderFood order food returned:boolean
+
+
+=========================
+
+rails d scaffold store name:string desctiption:text phone:string address:string tax_rate:decimal website:string
+rails d scaffold customer name:string lastname:string email:string birthday:date phone:string
+rails d scaffold category name:string description:text
+rails d scaffold food name:string price:decimal description:text category
+rails d scaffold waiter name:string lastname:string
+rails d scaffold table name:string capacity:decimal indoor:boolean
+
+rails d scaffold order discount:decimal brute:decimal net:decimal payed:boolean payed_at:datetime customer waiter
+
+rails d migration CreateJoinTableOrderTable order table
+rails d migration CreateJoinTableOrderFood order food returned:boolean

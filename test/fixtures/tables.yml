@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  capacity: 9.99
+  indoor: false
+
+two:
+  name: MyString
+  capacity: 9.99
+  indoor: false
