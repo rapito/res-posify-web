@@ -2,7 +2,6 @@ source 'https://rubygems.org'
 
 gem 'sqlite3', '1.3.10'
 gem 'mysql2', '0.3.18'
-gem 'MDL-rails', '1.0.0'
 gem 'faker', '1.5.0'
 gem 'rails_admin', '~> 0.6.8'
 
