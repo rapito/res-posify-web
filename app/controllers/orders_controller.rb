@@ -40,8 +40,11 @@ class OrdersController < ApplicationController
   # PATCH/PUT /orders/1
   # PATCH/PUT /orders/1.json
   def update
+    @order.payed_at=DateTime.now if order_params[:payed]
+    updated = @order.update(order_params)
+
     respond_to do |format|
-      if @order.update(order_params)
+      if updated
         format.html { redirect_to @order, notice: 'Order was successfully updated.' }
         format.json { render :show, status: :ok, location: @order }
       else
@@ -62,13 +65,13 @@ class OrdersController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_order
-      @order = Order.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_order
+    @order = Order.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def order_params
-      params.require(:order).permit(:discount, :brute, :net, :payed, :payed_at, :customer_id, :waiter_id)
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def order_params
+    params.require(:order).permit(:discount, :brute, :net, :payed, :payed_at, :customer_id, :waiter_id)
+  end
 end

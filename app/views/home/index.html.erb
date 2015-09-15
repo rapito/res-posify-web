@@ -18,12 +18,12 @@
     <tbody>
     <% @open.each do |order| %>
         <tr>
-          <td><%= order.waiter.name %></td>
+          <td><%= order.waiter.name unless order.waiter.nil?%></td>
           <td><%= tables_list order %></td>
           <td><%= order.brute %></td>
           <td><%= order.net %></td>
           <td><%= order.updated_at %></td>
-          <td><%= link_to 'Edit', order %></td>
+          <td><%= link_to :edit, edit_order_path(order) %></td>
         </tr>
     <% end %>
     </tbody>

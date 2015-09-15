@@ -1,45 +1,60 @@
+<input class="hidden" id="price-discount" value="<%= @discount %>"/>
+<input class="hidden" id="price-taxes" value="<%= @taxes %>"/>
+
 <%= form_for(@order) do |f| %>
-  <% if @order.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@order.errors.count, "error") %> prohibited this order from being saved:</h2>
+    <% if @order.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@order.errors.count, "error") %> prohibited this order from being saved:</h2>
 
-      <ul>
-      <% @order.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+          <ul>
+            <% @order.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+
+    <%= f.check_box :payed, hidden: true %>
+    <%= f.text_field :brute, hidden: true %>
+    <%= f.text_field :net, hidden: true %>
+
+    <div class="field">
+      <%= f.label :customer_id %><br>
+      <%= f.select :customer, Customer.all.collect { |x| [x.name, x.id] }, { :prompt => "None" } %>
     </div>
-  <% end %>
 
-  <div class="field">
-    <%= f.label :discount %><br>
-    <%= f.text_field :discount %>
-  </div>
-  <div class="field">
-    <%= f.label :brute %><br>
-    <%= f.text_field :brute %>
-  </div>
-  <div class="field">
-    <%= f.label :net %><br>
-    <%= f.text_field :net %>
-  </div>
-  <div class="field">
-    <%= f.label :payed %><br>
-    <%= f.check_box :payed %>
-  </div>
-  <div class="field">
-    <%= f.label :payed_at %><br>
-    <%= f.datetime_select :payed_at %>
-  </div>
-  <div class="field">
-    <%= f.label :customer_id %><br>
-    <%= f.text_field :customer_id %>
-  </div>
-  <div class="field">
-    <%= f.label :waiter_id %><br>
-    <%= f.text_field :waiter_id %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+    <div class="field">
+      <%= f.label :waiter_id %><br>
+      <%= f.select :waiter, Waiter.all.collect { |x| [x.name, x.id] } %>
+    </div>
+
+    <div class="field">
+      <%= f.label :foods %><br>
+      <%= f.select :foods, Food.all.collect { |x| ["#{x.name} - $#{x.price}", x.id] }, {}, :multiple => true %>
+    </div>
+
+    <div class="field">
+      <%= f.label :tables %><br>
+      <%= f.select :tables, Table.all.collect { |x| [x.name, x.id] }, {}, :multiple => true %>
+    </div>
+
+    <div class="field">
+      <%= f.label :tables %><br>
+      <%= f.select :tables, Table.all.collect { |x| [x.name, x.id] }, {}, :multiple => true %>
+    </div>
+
+    <div class="field">
+      <%= f.label :brute %><br>
+      <span id="price-brute"> </span>
+    </div>
+
+    <div class="field">
+      <%= f.label :net %><br>
+      <span id="price-net"> </span>
+    </div>
+
+    <div class="actions">
+      <%= f.submit %>
+      <%= f.submit "Close Order", onclick: 'closeOrder()' %>
+    </div>
 <% end %>
