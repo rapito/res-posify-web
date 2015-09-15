@@ -1,0 +1,76 @@
+<p id="notice"><%= notice %></p>
+
+<div class="row">
+  <h1>Open Orders</h1>
+
+  <table>
+    <thead>
+    <tr>
+      <th>Waiter</th>
+      <th>Tables</th>
+      <th>Brute</th>
+      <th>Net</th>
+      <th>Update At</th>
+      <th colspan="3"></th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <% @open.each do |order| %>
+        <tr>
+          <td><%= order.waiter.name %></td>
+          <td><%= tables_list order %></td>
+          <td><%= order.brute %></td>
+          <td><%= order.net %></td>
+          <td><%= order.updated_at %></td>
+          <td><%= link_to 'Edit', order %></td>
+        </tr>
+    <% end %>
+    </tbody>
+  </table>
+
+</div>
+
+<div class="row">
+  <h1>Latest Sales</h1>
+
+  <table>
+    <thead>
+    <tr>
+      <th>Waiter</th>
+      <th>Tables</th>
+      <th>Brute</th>
+      <th>Net</th>
+      <th>Payed At</th>
+      <th colspan="3"></th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <% @sales.each do |order| %>
+        <tr>
+          <td><%= order.waiter.name %></td>
+          <td><%= tables_list order %></td>
+          <td><%= order.brute %></td>
+          <td><%= order.net %></td>
+          <td><%= order.payed_at %></td>
+          <td><%= link_to 'Edit', order %></td>
+        </tr>
+    <% end %>
+    </tbody>
+  </table>
+
+</div>
+
+<div class="row">
+  <h1>Today Sales</h1>
+
+  <div class="col">
+    <ul>
+      <li>Orders: <%= @day_sales %></li>
+      <li>Income: <%= @day_income %></li>
+      <li>New Customers: <%= @day_customers %></li>
+    </ul>
+  </div>
+
+</div>
