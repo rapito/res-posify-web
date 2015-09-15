@@ -24,10 +24,10 @@
             <tr>
               <td><%= order.waiter.name unless order.waiter.nil? %></td>
               <td><%= tables_list order %></td>
-              <td><%= order.brute %></td>
-              <td><%= order.net %></td>
+              <td><span class="label label-warning">$<%= order.brute %></span></td>
+              <td><span class="label label-primary">$<%= order.net %></span></td>
               <td><%= order.updated_at %></td>
-              <td><%= link_to :edit, edit_order_path(order) %></td>
+              <td><%= link_to "Checkout", edit_order_path(order), class: 'btn btn-sm btn-info' %></td>
             </tr>
         <% end %>
         </tbody>
@@ -55,10 +55,10 @@
             <tr>
               <td><%= order.waiter.name %></td>
               <td><%= tables_list order %></td>
-              <td><%= order.brute %></td>
-              <td><%= order.net %></td>
+              <td><span class="label label-warning">$<%= order.brute %></span></td>
+              <td><span class="label label-primary">$<%= order.net %></span></td>
               <td><%= order.payed_at %></td>
-              <td><%= link_to 'Edit', order %></td>
+              <td><%= link_to 'Review', order, class: 'btn btn-sm btn-primary' %></td>
             </tr>
         <% end %>
         </tbody>
