@@ -1,76 +1,87 @@
 <p id="notice"><%= notice %></p>
 
 <div class="row">
-  <h1>Open Orders</h1>
 
-  <table >
-    <thead>
-    <tr>
-      <th>Waiter</th>
-      <th>Tables</th>
-      <th>Brute</th>
-      <th>Net</th>
-      <th>Update At</th>
-      <th colspan="3"></th>
-    </tr>
-    </thead>
+  <div class="col-md-8">
 
-    <tbody>
-    <% @open.each do |order| %>
+    <div class="panel panel-default">
+      <div class="panel-heading">Open Orders</div>
+
+      <table class="table">
+        <thead>
         <tr>
-          <td><%= order.waiter.name unless order.waiter.nil?%></td>
-          <td><%= tables_list order %></td>
-          <td><%= order.brute %></td>
-          <td><%= order.net %></td>
-          <td><%= order.updated_at %></td>
-          <td><%= link_to :edit, edit_order_path(order) %></td>
+          <th>Waiter</th>
+          <th>Tables</th>
+          <th>Brute</th>
+          <th>Net</th>
+          <th>Update At</th>
+          <th colspan="3"></th>
         </tr>
-    <% end %>
-    </tbody>
-  </table>
+        </thead>
 
-</div>
+        <tbody>
+        <% @open.each do |order| %>
+            <tr>
+              <td><%= order.waiter.name unless order.waiter.nil? %></td>
+              <td><%= tables_list order %></td>
+              <td><%= order.brute %></td>
+              <td><%= order.net %></td>
+              <td><%= order.updated_at %></td>
+              <td><%= link_to :edit, edit_order_path(order) %></td>
+            </tr>
+        <% end %>
+        </tbody>
+      </table>
 
-<div class="row">
-  <h1>Latest Sales</h1>
+    </div>
 
-  <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
-    <thead>
-    <tr>
-      <th>Waiter</th>
-      <th>Tables</th>
-      <th>Brute</th>
-      <th>Net</th>
-      <th>Payed At</th>
-      <th colspan="3"></th>
-    </tr>
-    </thead>
+    <div class="panel panel-default">
+      <div class="panel-heading">Latest Sales</div>
 
-    <tbody>
-    <% @sales.each do |order| %>
+      <table class="table">
+        <thead>
         <tr>
-          <td><%= order.waiter.name %></td>
-          <td><%= tables_list order %></td>
-          <td><%= order.brute %></td>
-          <td><%= order.net %></td>
-          <td><%= order.payed_at %></td>
-          <td><%= link_to 'Edit', order %></td>
+          <th>Waiter</th>
+          <th>Tables</th>
+          <th>Brute</th>
+          <th>Net</th>
+          <th>Payed At</th>
+          <th colspan="3"></th>
         </tr>
-    <% end %>
-    </tbody>
-  </table>
+        </thead>
 
-</div>
+        <tbody>
+        <% @sales.each do |order| %>
+            <tr>
+              <td><%= order.waiter.name %></td>
+              <td><%= tables_list order %></td>
+              <td><%= order.brute %></td>
+              <td><%= order.net %></td>
+              <td><%= order.payed_at %></td>
+              <td><%= link_to 'Edit', order %></td>
+            </tr>
+        <% end %>
+        </tbody>
+      </table>
 
-<div class="row">
-  <h1>Today Sales</h1>
-
-  <div class="col">
-    <ul>
-      <li>Orders: <%= @day_sales %></li>
-      <li>Income: <%= @day_income %></li>
-      <li>New Customers: <%= @day_customers %></li>
-    </ul>
+    </div>
   </div>
 
+  <div class="col-md-4">
+    <div class="panel panel-default">
+      <div class="panel-heading">Today Sales</div>
+
+      <ul class="list-group">
+        <li class="list-group-item">
+          Orders: <span class="badge badge-info"><%= @day_sales %></span>
+        </li>
+        <li class="list-group-item">
+          Income: <span class="badge badge-info"><%= @day_income %></span>
+        </li>
+        <li class="list-group-item">
+          New Customers: <span class="badge badge-info"><%= @day_customers %></span>
+        </li>
+      </ul>
+    </div>
+  </div>
 </div>
