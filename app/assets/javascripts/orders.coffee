@@ -18,7 +18,9 @@ ready = ->
     $('#order_brute').val(sum)
     $('#order_net').val(net)
 
-
+  #    Price label values assignment
+  $('#price-brute').html('$' + $('#order_brute').val())
+  $('#price-net').html('$' + $('#order_net').val())
 
 $(document).ready(ready)
 $(document).on('page:load', ready)

@@ -42,6 +42,8 @@ class OrdersController < ApplicationController
   def update
     @order.payed_at=DateTime.now if order_params[:payed]
     updated = @order.update(order_params)
+    @order.tables.build
+    @order.foods.build
 
     respond_to do |format|
       if updated
@@ -72,6 +74,6 @@ class OrdersController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def order_params
-    params.require(:order).permit(:discount, :brute, :net, :payed, :payed_at, :customer_id, :waiter_id)
+    params.require(:order).permit(:discount, :brute, :net, :payed, :payed_at, :customer_id, :waiter_id, :food_ids => [], :table_ids => [])
   end
 end

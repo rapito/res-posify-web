@@ -1,62 +1,58 @@
-<div class="panel panel-default">
-  <div class="panel-body">
+<input class="hidden" id="price-discount" value="<%= @discount %>"/>
+<input class="hidden" id="price-taxes" value="<%= @taxes %>"/>
 
+<%= bootstrap_form_for(@order, html: {class: 'horm-horizontal center'}) do |f| %>
+    <% if @order.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@order.errors.count, "error") %> prohibited this order from being saved:</h2>
 
-    <input class="hidden" id="price-discount" value="<%= @discount %>"/>
-    <input class="hidden" id="price-taxes" value="<%= @taxes %>"/>
-
-    <%= bootstrap_form_for(@order, html: {class: 'horm-horizontal center'}) do |f| %>
-        <% if @order.errors.any? %>
-            <div id="error_explanation">
-              <h2><%= pluralize(@order.errors.count, "error") %> prohibited this order from being saved:</h2>
-
-              <ul>
-                <% @order.errors.full_messages.each do |message| %>
-                    <li><%= message %></li>
-                <% end %>
-              </ul>
-            </div>
-        <% end %>
-
-        <div class="hidden">
-          <%= f.check_box :payed, hidden: true %>
-          <%= f.text_field :brute, hidden: true %>
-          <%= f.text_field :net, hidden: true %>
-        </div>
-
-        <div class="form-group">
-          <%= f.select :customer, Customer.all.collect { |x| [x.name, x.id] }, {:prompt => "None"} %>
-        </div>
-
-        <div class="form-group">
-          <%= f.select :waiter, Waiter.all.collect { |x| [x.name, x.id] } %>
-        </div>
-
-        <div class="form-group">
-          <%= f.select :foods, Food.all.collect { |x| ["#{x.name} - $#{x.price}", x.id] }, {}, :multiple => true %>
-        </div>
-
-        <div class="form-group">
-          <%= f.select :tables, Table.all.collect { |x| [x.name, x.id] }, {}, :multiple => true %>
-        </div>
-
-        <div class="form-group">
-          <%= f.label :brute %><br>
-          <span id="price-brute" class="label label-warning">$0</span>
-        </div>
-
-        <div class="form-group">
-          <%= f.label :net %><br>
-          <span id="price-net" class="label label-primary">$0</span>
-        </div>
-
-        <div class="actions">
-          <%= f.submit %>
-          <%= f.submit "Close Order", onclick: 'closeOrder()' %>
+          <ul>
+            <% @order.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+            <% end %>
+          </ul>
         </div>
     <% end %>
 
+    <div class="hidden">
+      <%= f.check_box :payed, hidden: true %>
+      <%= f.text_field :brute, hidden: true %>
+      <%= f.text_field :net, hidden: true %>
+    </div>
 
-  </div>
-</div>
+    <div class="form-group">
+      <%= f.select :customer, Customer.all.collect { |x| [x.name, x.id] }, {:prompt => "None"}, {name: 'order[customer_id]'} %>
+    </div>
+
+    <div class="form-group">
+      <%= f.select :waiter, Waiter.all.collect { |x| [x.name, x.id] }, {}, {name: 'order[waiter_id]'} %>
+    </div>
+
+    <div class="form-group">
+      <%= f.collection_select(:foods, Food.all, :id, :name_with_price, {:selected => @order.food_ids}, {multiple: true, name: 'order[food_ids][]'}) %>
+
+    </div>
+
+    <div class="form-group">
+      <%= f.collection_select(:tables, Table.all, :id, :name, {:selected => @order.table_ids}, {multiple: true, name: 'order[table_ids][]'}) %>
+
+    </div>
+
+    <div class="form-group">
+      <%= f.label :brute %><br>
+      <span id="price-brute" class="label label-warning">$0</span>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :net %><br>
+      <span id="price-net" class="label label-primary">$0</span>
+    </div>
+
+    <div class="actions">
+      <%= f.submit %>
+      <%= f.submit "Close Order", onclick: 'closeOrder()' %>
+    </div>
+<% end %>
+
+
 
