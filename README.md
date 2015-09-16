@@ -9,7 +9,7 @@ Get this application source using git:
 Then move to application directory, and bundle:
 
     $ cd res-posify-web/
-    $ bundle install
+    $ bundle install 
 
 Setup database with seeds:
 
