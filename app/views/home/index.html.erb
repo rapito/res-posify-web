@@ -1,0 +1,105 @@
+<% if not notice.nil? %>
+    <div class="alert alert-info">
+      <p id="notice"><%= notice %></p>
+    </div>
+<% end %>
+
+<div class="row">
+
+  <div class="col-md-8">
+
+    <div class="panel panel-default">
+      <div class="panel-heading">Open Orders</div>
+
+      <table class="table">
+        <thead>
+        <tr>
+          <th>Waiter</th>
+          <th>Tables</th>
+          <th>Brute</th>
+          <th>Net</th>
+          <th>Update At</th>
+          <th colspan="3"></th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <% @open.each do |order| %>
+            <tr>
+              <td><%= order.waiter.name unless order.waiter.nil? %></td>
+              <td><%= tables_list order %></td>
+              <td><span class="label label-warning">$<%= order.brute %></span></td>
+              <td><span class="label label-primary">$<%= order.net %></span></td>
+              <td><%= order.updated_at %></td>
+              <td><%= link_to "Checkout", edit_order_path(order), class: 'btn btn-sm btn-info' %></td>
+            </tr>
+        <% end %>
+        </tbody>
+      </table>
+
+    </div>
+
+    <div class="panel panel-default">
+      <div class="panel-heading">Latest Sales</div>
+
+      <table class="table">
+        <thead>
+        <tr>
+          <th>Waiter</th>
+          <th>Tables</th>
+          <th>Brute</th>
+          <th>Net</th>
+          <th>Payed At</th>
+          <th colspan="3"></th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <% @sales.each do |order| %>
+            <tr>
+              <td><%= order.waiter.name %></td>
+              <td><%= tables_list order %></td>
+              <td><span class="label label-warning">$<%= order.brute %></span></td>
+              <td><span class="label label-primary">$<%= order.net %></span></td>
+              <td><%= order.payed_at %></td>
+              <td><%= link_to 'Review', order, class: 'btn btn-sm btn-primary' %></td>
+            </tr>
+        <% end %>
+        </tbody>
+      </table>
+
+    </div>
+  </div>
+
+  <div class="col-md-4">
+
+    <div class="btn-group spacer-bottom" role="group" aria-label="...">
+      <%= link_to "New Order", new_order_url, class: 'btn btn-success' %>
+
+      <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Actions
+        <span class="caret"></span>
+      </button>
+      <ul class="dropdown-menu">
+        <li><%= link_to "New Customer", new_customer_url %></li>
+        <li><%= link_to "View Food", rails_admin.index_path('food'), 'data-no-turbolink' => true %></li>
+      </ul>
+    </div>
+
+    <div class="panel panel-default">
+      <div class="panel-heading">Today Sales</div>
+
+      <ul class="list-group">
+        <li class="list-group-item">
+          Orders: <span class="badge badge-info"><%= @day_sales %></span>
+        </li>
+        <li class="list-group-item">
+          Income: <span class="badge badge-info"><%= @day_income %></span>
+        </li>
+        <li class="list-group-item">
+          New Customers: <span class="badge badge-info"><%= @day_customers %></span>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

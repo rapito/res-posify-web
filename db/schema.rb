@@ -14,86 +14,83 @@
 ActiveRecord::Schema.define(version: 20150913154027) do
 
   create_table "categories", force: :cascade do |t|
-    t.string   "name",        limit: 255
-    t.text     "description", limit: 65535
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
+    t.string   "name"
+    t.text     "description"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   create_table "customers", force: :cascade do |t|
-    t.string   "name",       limit: 255
-    t.string   "lastname",   limit: 255
-    t.string   "email",      limit: 255
+    t.string   "name"
+    t.string   "lastname"
+    t.string   "email"
     t.date     "birthday"
-    t.string   "phone",      limit: 255
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.string   "phone"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "foods", force: :cascade do |t|
-    t.string   "name",        limit: 255
-    t.decimal  "price",                     precision: 10
-    t.text     "description", limit: 65535
-    t.integer  "category_id", limit: 4
-    t.datetime "created_at",                               null: false
-    t.datetime "updated_at",                               null: false
+    t.string   "name"
+    t.decimal  "price"
+    t.text     "description"
+    t.integer  "category_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
-  add_index "foods", ["category_id"], name: "index_foods_on_category_id", using: :btree
+  add_index "foods", ["category_id"], name: "index_foods_on_category_id"
 
   create_table "foods_orders", id: false, force: :cascade do |t|
-    t.integer "order_id", limit: 4, null: false
-    t.integer "food_id",  limit: 4, null: false
-    t.boolean "returned", limit: 1
+    t.integer "order_id", null: false
+    t.integer "food_id",  null: false
+    t.boolean "returned"
   end
 
   create_table "orders", force: :cascade do |t|
-    t.decimal  "discount",              precision: 10
-    t.decimal  "brute",                 precision: 10
-    t.decimal  "net",                   precision: 10
-    t.boolean  "payed",       limit: 1
+    t.decimal  "discount"
+    t.decimal  "brute"
+    t.decimal  "net"
+    t.boolean  "payed"
     t.datetime "payed_at"
-    t.integer  "customer_id", limit: 4
-    t.integer  "waiter_id",   limit: 4
-    t.datetime "created_at",                           null: false
-    t.datetime "updated_at",                           null: false
+    t.integer  "customer_id"
+    t.integer  "waiter_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
-  add_index "orders", ["customer_id"], name: "index_orders_on_customer_id", using: :btree
-  add_index "orders", ["waiter_id"], name: "index_orders_on_waiter_id", using: :btree
+  add_index "orders", ["customer_id"], name: "index_orders_on_customer_id"
+  add_index "orders", ["waiter_id"], name: "index_orders_on_waiter_id"
 
   create_table "orders_tables", id: false, force: :cascade do |t|
-    t.integer "order_id", limit: 4, null: false
-    t.integer "table_id", limit: 4, null: false
+    t.integer "order_id", null: false
+    t.integer "table_id", null: false
   end
 
   create_table "stores", force: :cascade do |t|
-    t.string   "name",        limit: 255
-    t.text     "desctiption", limit: 65535
-    t.string   "phone",       limit: 255
-    t.string   "address",     limit: 255
-    t.decimal  "tax_rate",                  precision: 10
-    t.string   "website",     limit: 255
-    t.datetime "created_at",                               null: false
-    t.datetime "updated_at",                               null: false
+    t.string   "name"
+    t.text     "description"
+    t.string   "phone"
+    t.string   "address"
+    t.decimal  "tax_rate"
+    t.string   "website"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   create_table "tables", force: :cascade do |t|
-    t.string   "name",       limit: 255
-    t.decimal  "capacity",               precision: 10
-    t.boolean  "indoor",     limit: 1
-    t.datetime "created_at",                            null: false
-    t.datetime "updated_at",                            null: false
+    t.string   "name"
+    t.decimal  "capacity"
+    t.boolean  "indoor"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "waiters", force: :cascade do |t|
-    t.string   "name",       limit: 255
-    t.string   "lastname",   limit: 255
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.string   "name"
+    t.string   "lastname"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
-  add_foreign_key "foods", "categories"
-  add_foreign_key "orders", "customers"
-  add_foreign_key "orders", "waiters"
 end

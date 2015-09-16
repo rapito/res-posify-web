@@ -28,7 +28,7 @@ class CustomersController < ApplicationController
 
     respond_to do |format|
       if @customer.save
-        format.html { redirect_to @customer, notice: 'Customer was successfully created.' }
+        format.html { redirect_to root_url, notice: 'Customer was successfully created.' }
         format.json { render :show, status: :created, location: @customer }
       else
         format.html { render :new }
@@ -42,7 +42,7 @@ class CustomersController < ApplicationController
   def update
     respond_to do |format|
       if @customer.update(customer_params)
-        format.html { redirect_to @customer, notice: 'Customer was successfully updated.' }
+        format.html { redirect_to root_url, notice: 'Customer was successfully updated.' }
         format.json { render :show, status: :ok, location: @customer }
       else
         format.html { render :edit }
@@ -62,13 +62,13 @@ class CustomersController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_customer
-      @customer = Customer.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_customer
+    @customer = Customer.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def customer_params
-      params.require(:customer).permit(:name, :lastname, :email, :birthday, :phone)
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def customer_params
+    params.require(:customer).permit(:name, :lastname, :email, :birthday, :phone)
+  end
 end
