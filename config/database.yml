@@ -12,11 +12,11 @@ mysql2: &mysql2
   host: localhost
 
 test:
-  <<: *sqlite
+  <<: *mysql2
   database: posify_test
 
 development:
-  <<: *sqlite
+  <<: *mysql2
   database: posify_dev
 
 production:
