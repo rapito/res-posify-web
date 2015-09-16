@@ -8,6 +8,6 @@ class Order < ActiveRecord::Base
   has_and_belongs_to_many :foods
 
   scope :pending, -> { where(payed: false) }
-  scope :payed, -> { where(payed: true) }
+  scope :payed, -> { where(payed: true).order(payed_at: 'desc') }
 
 end

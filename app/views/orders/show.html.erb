@@ -1,18 +1,13 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Discount:</strong>
-  <%= @order.discount %>
-</p>
-
-<p>
   <strong>Brute:</strong>
-  <%= @order.brute %>
+  $<%= @order.brute %>
 </p>
 
 <p>
   <strong>Net:</strong>
-  <%= @order.net %>
+  $<%= @order.net %>
 </p>
 
 <p>
@@ -27,12 +22,12 @@
 
 <p>
   <strong>Customer:</strong>
-  <%= @order.customer %>
+  <%= @order.customer.name unless @order.customer.nil? %>
 </p>
 
 <p>
   <strong>Waiter:</strong>
-  <%= @order.waiter %>
+  <%= @order.waiter.name unless @order.waiter.nil? %>
 </p>
 
 <%= link_to 'Edit', edit_order_path(@order) %> |
